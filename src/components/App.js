@@ -8,24 +8,12 @@ import { addMovies, setShowFavourites } from "../actions";
 class App extends React.Component {
 
   componentDidMount () {
-    // make api call to get the movie
-    // and when we get the movie, we diapatch an action "we want to add these movies to the store"
-
     const { store } = this.props
-
     store.subscribe(() => {
-      console.log('UPDATED');
-      this.forceUpdate(); //forcefully updating our app component we should never use this method
+      this.forceUpdate();
     })
 
-    // store.dispatch({     // After the very first render first dispatch will call then subscribe will call then console.log at line 25 will call
-    //   type:"ADD_MOVIES",
-    //   movies: data
-    // })
-
     store.dispatch(addMovies(data))
-
-    console.log('State',this.props.store.getState());
   }
 
   isMovieFavourite = (movie) => {
@@ -43,10 +31,7 @@ class App extends React.Component {
     this.props.store.dispatch(setShowFavourites(val))
   }
   render () {
-    console.log("Render");
     const { list, favourites, showFavourites } = this.props.store.getState(); // { list: [], favourite : []}
-    console.log(this.props.store.getState());
-
     const displayMovies = showFavourites ? favourites : list;
     return (
       <div className="App">
