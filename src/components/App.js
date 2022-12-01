@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
 import React from "react";
 import {data} from '../data';
+import { addMovies } from "../actions";
 
 class App extends React.Component {
 
@@ -17,10 +18,12 @@ class App extends React.Component {
       this.forceUpdate(); //forcefully updating our app component we should never use this method
     })
 
-    store.dispatch({     // After the very first render first dispatch will call then subscribe will call then console.log at line 25 will call
-      type:"ADD_MOVIES",
-      movies: data
-    })
+    // store.dispatch({     // After the very first render first dispatch will call then subscribe will call then console.log at line 25 will call
+    //   type:"ADD_MOVIES",
+    //   movies: data
+    // })
+
+    store.dispatch(addMovies(data))
 
     console.log('State',this.props.store.getState());
   }
