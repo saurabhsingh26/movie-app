@@ -12,10 +12,10 @@ export const SET_SHOW_FAVOURITES = 'SET_SHOW_FAVOURITES';
 
 // action creator
 
-export function addMovies (movies){
+export function addMovies (movies){   // calling this action from app.js line 16
     return {
         type:ADD_MOVIES,
-        movies
+        movies       
     }
 }
 

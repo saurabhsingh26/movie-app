@@ -7,12 +7,13 @@ const initialMoviesState = {
     showFavourites : false
 }
 export default function movies (state = initialMoviesState, action){
+    console.log('action',action);
 
     switch (action.type) {
         case ADD_MOVIES:
-            return {
-                ...state,
-                list : action.movies
+            return {   //our initial state are object so we need to return object not array
+                ...state,   
+                list : action.movies  // changing the property of list of initial state using (object properties)
             }
 
         case ADD_TO_FAVOURITE:
