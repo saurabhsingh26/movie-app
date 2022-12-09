@@ -1,5 +1,5 @@
 import { ADD_MOVIES, ADD_TO_FAVOURITE, REMOVE_FROM_FAVOURITE, SET_SHOW_FAVOURITES } from "../actions";
-
+import { combineReducers } from "redux";
 
 const initialMoviesState = {
     list : [],
@@ -51,15 +51,26 @@ export function search (state = initialSearchState, action){
     return state;
 }
 
-const initialRootState = {
-    movies: initialMoviesState,
-    search: initialSearchState
-}
+// const initialRootState = {
+//     movies: initialMoviesState,
+//     search: initialSearchState
+// }
 
-export default function rootReducer (state = initialRootState, action){
-    // console.log('rootReducer action',action)
-    return{
-        movies: movies(state.movies,action),// we are telling that movie should be manage by movies reducer and same for search
-        search: search(state.search,action)
-    }
-}
+// export default function rootReducer (state = initialRootState, action){
+//     // console.log('rootReducer action',action)
+//     return{
+//         movies: movies(state.movies,action),// we are telling that movie should be manage by movies reducer and same for search
+//         search: search(state.search,action)
+//     }
+// }
+
+
+
+
+
+// this combineReducers function required an arg which should be an object, we should tell that
+// which property we want to have a state as well as reducer responsible for that property
+export default combineReducers({
+    movies: movies,
+    search:search
+})
