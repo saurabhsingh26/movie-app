@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import './styles/index.css';
 import App from './components/App';
 import rootReducer from './reducers';
@@ -19,11 +20,21 @@ import rootReducer from './reducers';
 // }
 
 const logger = ({dispatch,getState}) => (next) => (action) => {
-  console.log('ACTION_TYPE',action.type);
+  if(typeof action !== 'function'){
+    console.log('ACTION_TYPE',action.type);
+  }
   next(action);
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger)); // pass the reducer which is movie
+// const thunk = ({dispatch,getState}) => (next) => (action) => {
+//   if (typeof action === 'function'){
+//     action(dispatch);  // if an action is a function  we are just calling a function passing the dispatch value if not then passing the action object to the reducer
+//     return;
+//   }
+//   next(action); // we are using thunk package
+// }
+
+const store = createStore(rootReducer, applyMiddleware(logger, thunk)); // pass the reducer which is movie
 // createStore funx internally call the reducer to get initial state
 // dispatch function will pass the action to reducer
 // console.log('state',store.getState());
