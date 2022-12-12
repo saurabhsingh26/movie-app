@@ -7,15 +7,20 @@ import rootReducer from './reducers';
 
 // Curried form of function logger(obj,next,action)
 // logger(obj)(next)(action)
-const logger = function (obj){ // this object will contain 2 properties dispatch and getState properties. Redux willautomatically pass the two prop in logger function.
-  const {dispatch,getState} = obj  // {dispatch,getState} - this is not store object this is simple object with two parameters.
-  return function(next){
-    return function(action){
-      // Middleware
-      console.log('ACTION_TYPE',action.type);
-      next(action);
-    }
-  }
+// const logger = function (obj){ // this object will contain 2 properties dispatch and getState properties. Redux willautomatically pass the two prop in logger function.
+//   const {dispatch,getState} = obj  // {dispatch,getState} - this is not store object this is simple object with two parameters.
+//   return function(next){
+//     return function(action){
+//       // Middleware
+//       console.log('ACTION_TYPE',action.type);
+//       next(action);
+//     }
+//   }
+// }
+
+const logger = ({dispatch,getState}) => (next) => (action) => {
+  console.log('ACTION_TYPE',action.type);
+  next(action);
 }
 
 const store = createStore(rootReducer, applyMiddleware(logger)); // pass the reducer which is movie
