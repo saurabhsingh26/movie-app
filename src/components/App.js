@@ -8,7 +8,7 @@ import { StoreContext } from "../";
 
 class App extends React.Component {
 
-  componentDidMount () {
+  componentDidMount () {  // componentDidMount needs the access of store
     const { store } = this.props
     store.subscribe(() => {
       this.forceUpdate();
@@ -38,7 +38,7 @@ class App extends React.Component {
     const displayMovies = showFavourites ? favourites : list;
   //  StoreContext will expect a function
     return (
-      <StoreContext.Consumer>  
+      <StoreContext.Consumer>   {/*consumer should be use in render method , this method is not right becoz componentDidMount also needs the access of store, */}
         {(store) => {   // store name can be anything
           return (
             <div className="App">

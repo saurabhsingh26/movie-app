@@ -45,7 +45,7 @@ class Provider extends React.Component {
   render() {
     const {store} = this.props;
     return (
-      <StoreContext.Provider value={store} >
+      <StoreContext.Provider value={store} > {/* whatever we pass in b/w this value ie store changes so all of my app component who are using the values store will get re-Render/ all of the consumer will get re-render   */}
         {this.props.children}        {/* it will render app component */}
       </StoreContext.Provider>
     )
