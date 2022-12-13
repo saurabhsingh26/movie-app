@@ -61,14 +61,27 @@ class App extends React.Component {
   }
 }
 
-class AppWrapper extends React.Component {
-  render() {
-    return (
-      <StoreContext.Consumer>
-        {(store) => <App store = {store} /> }
-      </StoreContext.Consumer>
-    )
+// class AppWrapper extends React.Component {
+//   render() {
+//     return (
+//       <StoreContext.Consumer>
+//         {(store) => <App store = {store} /> }
+//       </StoreContext.Consumer>
+//     )
+//   }
+// }
+
+
+// This callback function tell the connect that what data we want from the store
+function callback (state){  // here we get the whole store state
+  return{
+    movies: state.movies,
+    search: state.search
   }
 }
 
-export default AppWrapper;
+const connectedAppComponent = connect(callback)(App)
+// Inside the connect function we will have to tell what data that we want from the store and which component we want to connect this component
+// I will get the state whenever my connect function calling this callback
+
+export default connectedAppComponent;
