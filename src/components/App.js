@@ -7,8 +7,9 @@ import {data} from '../data';
 import { addMovies, setShowFavourites } from "../actions";
 
 class App extends React.Component {
-
+  
   componentDidMount () {
+    // console.log('this.props',this.props);
     this.props.dispatch(addMovies(data))
   }
 
@@ -57,16 +58,19 @@ class App extends React.Component {
 
 // This callback function(mapStateToProps) tells the connect that what data we want from the store
 function mapStateToProps (state){  // here we get the whole store state
+  // console.log('state********',state);
   return{
-    movies: state.movies,
+    movies: state.movies, // what data I want from store state
     search: state.search
   }
 }
 
+// Telling redux using connect function that I have a component to be connected to store and I want this particular data only from the store.
 const connectedAppComponent = connect(mapStateToProps)(App)
 // Inside the connect function we will have to tell what data that we want from the store and which component we want to connect this component
-// I will get the state whenever my connect function calling this callback
+//Internally assume connect function will be calling my callback(mapStateToProps) with the redux store state. I will get the state whenever my connect function calling this callback.
 // App component will get properties movie and search as a props
+// Whatever component is connected only that component gets refresh/re-render when that particular prop changes.
 // App component will render only if movies and search properties will change. 
 
 export default connectedAppComponent;
