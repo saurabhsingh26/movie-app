@@ -8,7 +8,7 @@ import { addMovies, setShowFavourites } from "../actions";
 
 class App extends React.Component {
 
-  componentDidMount () {  // componentDidMount needs the access of store
+  componentDidMount () {
     this.props.dispatch(addMovies(data))
   }
 
@@ -17,7 +17,6 @@ class App extends React.Component {
     const index = movies.favourites.indexOf(movie);
 
     if(index !== -1){
-      // found the movie
       return true;
     }
     return false;
@@ -56,18 +55,7 @@ class App extends React.Component {
   }
 }
 
-// class AppWrapper extends React.Component {
-//   render() {
-//     return (
-//       <StoreContext.Consumer>
-//         {(store) => <App store = {store} /> }
-//       </StoreContext.Consumer>
-//     )
-//   }
-// }
-
-
-// This callback function tell the connect that what data we want from the store
+// This callback function(mapStateToProps) tells the connect that what data we want from the store
 function mapStateToProps (state){  // here we get the whole store state
   return{
     movies: state.movies,
