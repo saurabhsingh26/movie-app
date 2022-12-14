@@ -52,6 +52,9 @@ class Provider extends React.Component {
   }
 }
 
+
+// We have implemented all the functionality by the package react-redux
+
 // const connectedComponent = connect(callback)(App);
 export function connect(callback) {
   return function (Component) {
